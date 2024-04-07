@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Jewelry, Feeding
-from .serializers import JewelrySerializer, FeedingSerializer
+from .models import Jewelry, Feeding, Toy
+from .serializers import JewelrySerializer, FeedingSerializer, ToySerializer
 
 class JewelryList(generics.ListCreateAPIView):
   queryset = Jewelry.objects.all()
@@ -39,6 +39,15 @@ class FeedingDetail(generics.RetrieveUpdateDestroyAPIView):
   def get_queryset(self):
     jewelry_id = self.kwargs['jewelry_id']
     return Feeding.objects.filter(jewelry_id=jewelry_id)
+  
+class ToyList(generics.ListCreateAPIView):
+  queryset = Toy.objects.all()
+  serializer_class = ToySerializer
+
+class ToyDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Toy.objects.all()
+  serializer_class = ToySerializer
+  lookup_field = 'id'  
    
    
 

@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Jewelry, Feeding
+from .models import Jewelry, Feeding, Toy
+
+class ToySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Toy
+        fields = '__all__'
 
 class JewelrySerializer(serializers.ModelSerializer):
     class Meta:
