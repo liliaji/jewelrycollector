@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import date
+from django.contrib.auth.models import User
 
 MEALS = (
     ('B', 'Breakfast'),
@@ -23,6 +25,7 @@ class Jewelry(models.Model):
     age = models.IntegerField ()
     # Add the M:M relationship
     toys = models.ManyToManyField(Toy)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
       return self.name   
